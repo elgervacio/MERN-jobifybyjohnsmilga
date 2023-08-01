@@ -4,6 +4,8 @@ import { useAppContext } from "../context/appContext"
 import Wrapper from "../assets/wrappers/RegisterPage"
 
 
+
+
 const initialState = {
     name: '',
     password: '',
@@ -12,9 +14,11 @@ const initialState = {
 }
 
 const Register = () => {
+
+
     const [values, setValues] = useState(initialState);
     // global state and useNavigate
-    const { isLoading, showAlert } = useAppContext()
+    const { isLoading, showAlert, displayAlert, showToastMessage } = useAppContext()
 
 
     const toggleMember = () => {
@@ -22,12 +26,21 @@ const Register = () => {
     }
 
     const handleChange = (e) => {
-        console.log(e.target);
+        setValues({ ...values, [e.target.name]: e.target.value })
     }
 
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target);
+
+        const { name, email, password, isMember } = values
+        if (!email || !password || (!isMember & !name)) {
+            displayAlert()
+            showToastMessage()
+            return
+
+        }
+        console.log(values)
+
     }
 
     return (
@@ -60,12 +73,13 @@ const Register = () => {
                     value={values.password}
                     handleChange={handleChange}
                 />
-                <button type="submit" className="btn btn-block ">submit
-                </button>
+                <button type="submit" className="btn btn-block " >submit </button>
+
                 <p>
                     {values.isMember ? 'Not a member yet?' : 'Already a member?'}
                     <button type="button" onClick={toggleMember} className="member-btn">
                         {values.isMember ? 'Register' : 'Login'}
+
                     </button>
                 </p>
 

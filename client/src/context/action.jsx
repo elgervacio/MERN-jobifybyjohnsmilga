@@ -1,3 +1,5 @@
 export const DISPLAY_ALERT = 'SHOW_ALERT'
+export const CLEAR_ALERT = 'CLEAR_ALERT'
+export const TOAST_CONTAINER = 'TOAST_CONTAINER'
 
 
