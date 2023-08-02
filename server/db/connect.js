@@ -5,4 +5,4 @@ const connectDB = (url) => {
     return mongoose.connect(url)
 }
 
-export default connectDB
+export default connectDB 
